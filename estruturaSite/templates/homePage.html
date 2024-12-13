@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/homePage.css'%}">
 </head>
 <body style="background-color: #FFF9F0">
+
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: #ffede7;">
             <div class="container-fluid">
@@ -17,46 +18,33 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item ms-3">
-                            <a class="nav-link active" aria-current="page" href=" ">Início</a>
-                        </li>
-                    </ul>
+                    <button type="button" class="btn ms-3" id="botaoInicio"><a href="{% url 'homePage' %}">Início</a></button>
                     <form class="d-flex ms-3" role="search">
                         <input class="form-control ms-2" type="search" placeholder="Receita de..." aria-label="Search">
-                        <button class="btn" type="submit">Pesquisar</button>
+                        <button class="btn ms-2" type="submit" id="botaoPesquisar">Pesquisar</button>
                     </form>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <button class=" ms-auto me-4">Login</button>
+                        <button type="button" class="btn ms-auto me-4" id="botaoLogin"><a href="{% url 'loginPage' %}">Login</a></button>
                     </div>
-
-                    <!-- 
-                    <div class="dropdown ms-auto me-4">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="contaDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            Conta
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="contaDropdown">
-                            <li><a class="dropdown-item" href=" ">Teste</a></li>
-                        </ul>
-                    </div>    
-                    -->
-
                 </div>
             </div>
         </nav>
     </header>
+
     <main style="max-height: 100%">
         <h1 class="d-flex flex-column align-items-center mt-3">Olá! Seja bem-vindo(a) ao Site de Receitas!</h1>
         <div class="d-flex flex-column align-items-center mt-3">
             <h2>Receitas mais acessadas:</h2>
         </div>
     </main>
+
     <footer>
         <div class="d-flex" style="background-color: #DDC6BA;">
             <p class="mt-3 ms-3">Copyright &copy; Paulo Henrique Santos Adriani</p>
         </div>
     </footer>
-    <script src="{% static 'js/homePage.js'%}"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static 'js/homePage.js'%}"></script>
 </body>
 </html>

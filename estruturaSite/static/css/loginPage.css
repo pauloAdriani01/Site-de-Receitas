@@ -3,27 +3,15 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    background-color: #ffede7;
     color: #212529;
 }
 
-a {
-    color: #212529;
-    text-decoration: none;
-}
-
-#botaoInicio, #botaoPesquisar, #botaoLogin {
+#botaoEnviar {
     --bs-btn-border-color: #DDC6BA;
     --bs-btn-hover-bg: #D6C6B9;
     --bs-btn-hover-border-color: #D6C6B9;
     --bs-btn-active-bg: #C3AA9A;
     --bs-btn-active-border-color: #C3AA9A;
     --bs-btn-color: #212529;
-}
-
-li {
-    list-style: none; /* Não deixa o estilo padrão das listas de HTML */
-}
-
-main {
-    flex: 1;
 }

@@ -1,6 +1,7 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.views.generic import TemplateView
 
-def homePage(request):
-    template = loader.get_template('homePage.html')
-    return HttpResponse(template.render())
+class homePageView(TemplateView):
+    template_name = 'homePage.html'
+
+class loginPageView(TemplateView):
+    template_name = 'loginPage.html'

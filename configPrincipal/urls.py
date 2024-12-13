@@ -17,12 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from estruturaSite.views import homePageView, loginPageView
+
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('estruturaSite.urls'))
+    path('', homePageView.as_view(template_name='homePage.html'), name='homePage'),
+    path('loginPage/', loginPageView.as_view(template_name='loginPage.html'), name='loginPage')
 ]
 
 if settings.DEBUG:
