@@ -1,57 +1,64 @@
-#Define a condiguração da página de login padrão do django, usando a minha configuração
-
-from django.contrib.auth.views import LoginView 
-
-class loginPageView(LoginView):
-    template_name = 'usuarios/loginPage.html'
-
-    #Redireciona a página do perfil após o login
-    def get_success_url(self):
-        return redirect('editarPerfil')
-
-###
-
 from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+class loginPageView(TemplateView):
+    template_name = 'loginPage.html'
 
 class cadastrarPageView(TemplateView):
     template_name = 'cadastrarPage.html'
 
-class editarPerfilView(LoginRequiredMixin, TemplateView):
+class editarPerfilView(TemplateView):
     template_name = 'editarPerfil.html'
 
+#Configuração da página de cadastro para o redirecionamento até a página de edição de perfil
 
-#Define a confirguração de criação do usuário utilizando o email, após isso, ele é redirecionado até a página de login
-
-from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def register(request):
+
+    #Padrões são enviados assim caso seja um GET
+    email = ''
+    username = ''
+    password = ''
+    password_confirm = ''
+
     if request.method == 'POST':
+        email=request.POST.get('emailUsuario')
+        username=request.POST.get('nomeUsuario')
+        password=request.POST.get('senhaUsuario')
+        password_confirm = request.POST.get('senhaUsuarioConfirmada')
 
-        #Novo usuário com formulário customizado (usando o email)
-        email = request.POST.get('email')
-        senhaUsuario = request.POST.get('senhaUsuario')
-        senhaUsuarioConfirmada = request.POST.get('senhaUsuarioConfirmada')
+    #Checa se um dos campos não estão preenchidos
+    if not username or not email or not password or not password_confirm:
+        messages.error(request, 'Todos os campos devem ser preenchidos.')
+        return render(request, 'cadastrarPage.html')
 
-        #Checa se as senhas estão funcionando
-        if senhaUsuario != senhaUsuarioConfirmada:
-            return render(request, 'cadastrarPage.html', {'erro': 'As senha não coincidem.'})
-
-        #Cria e salva o usuário
-        user = user.objects.create_user(username=email, email=email, password=senhaUsuario)
-        user.save()
-
-
-        #Faz o login automático após o cadastro
-        login(request, user)
-
-        #Redireciona até a página de login
-        return redirect ('editarPerfil')
+    #Checa se as senhas são iguais
+    if password != password_confirm:
+        messages.error(request, 'As senhas não coincidem.')
+        return render(request, 'cadastrarPage.html')
     
-    return render(request, 'cadastrarPage.html')
+    #Checa se o nome de usuário já existe
+    if User.objects.filter(username=username).exists():
+        messages.error(request, 'O nome de usuário já está em uso.')
+        return render(request, 'cadastrarPage.html')
+    
+    #Checa se o email já existe
+    if User.objects.filter(email=email).exists():
+        messages.error(request, 'O e-mail já está em uso.')
+        return render(request, 'cadastrarPage.html')
+    
+    #Criação do usuário
+    usuarioNovo = User.objects.create_user(username=username, email=email, password=password)
+    usuarioNovo.save()
 
-###
+    #Mensagem de sucesso
+    messages.success(request, 'Perfil criado com sucesso. Seja bem-vindo(a) ao Site de Receitas! =)')
 
+    #Faz o login automático após o cadastro
+    login(request, usuarioNovo)
+
+    #Redireciona até a página de login
+    return redirect ('editarPerfil')

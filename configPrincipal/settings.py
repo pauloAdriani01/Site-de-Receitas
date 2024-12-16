@@ -126,11 +126,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Modelo de autenficação com email
-AUTHENTICATION_BACKENDS = (
-    'usuarios.authentication.EmailBackend', #Meu modelo de autenficação customizado
-    'django.contrib.auth.backends.ModelBackend' #Backend default
-)
-
 LOGIN_URL = 'loginPage/' #Minha login page definida como a página de login padrão
 LOGIN_REDIRECTED_URL = 'editarPerfil' #Página que será transferido após o login

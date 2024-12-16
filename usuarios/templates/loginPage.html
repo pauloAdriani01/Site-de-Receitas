@@ -19,21 +19,21 @@
             <div class="col-md-4 col-lg-3">
                 <div class="card shadow-lg p-4"> <!-- Card é um container flexível que se pode aplicar estilos facilmente; shadow-lg adiciona uma grande sombra ao redor do card -->
 
-                    <form method="POST"> <!-- Configurada para incluir a configuração padrão de login do django, usando um protocolo de POST -->
+                    <form method="POST" action="{% url 'loginPage' %}"> <!-- Configurada para incluir a configuração padrão de login do django, usando um protocolo de POST -->
                         {% csrf_token %} <!-- Proteção contra ataques CSFR -->
 
                         <!-- Caso eu queira, esse comando gera um formulário automático de login: {{ form.as_p }}-->
 
                         <!-- Autentificação de usuário (usado email)-->
                         <div class="mb-3">
-                            <label for="username" class="form-label">E-mail:</label> <!-- label pode ser usado como a descrição de um item; form-label estiliza o label -->
-                            <input type="email" class="form-control" id="emailUsuario" placeholder="seunome0000@gmail.com" required> <!-- form-control estiliza os espaços para a inserção de informações -->
+                            <label for="username" class="form-label">Nome de usuário:</label> <!-- label pode ser usado como a descrição de um item; form-label estiliza o label -->
+                            <input type="username" class="form-control" id="nomeUsuario" name="username" placeholder="Cara Legal dos Santos" required> <!-- form-control estiliza os espaços para a inserção de informações -->
                         </div>
 
                         <!-- Autentificação de senha -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Senha:</label>
-                            <input type="password" class="form-control" id="senhaUsuario" placeholder="Insira sua senha" required>
+                            <input type="password" class="form-control" id="senhaUsuario" name="password" placeholder="Insira sua senha" required>
                         </div>
 
                         <!-- Checkbox e esqueceu a senha -->

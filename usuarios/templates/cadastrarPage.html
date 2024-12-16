@@ -11,7 +11,7 @@
 <body>
     
     <header class="d-flex flex-column align-items-center justify-content-center mt-5">
-        <h3 class="mb-4">Cadastre-se</h3>
+        <h3 class="mb-5">Cadastre-se</h3>
     </header>
 
     <main>
@@ -19,13 +19,19 @@
             <div class="col-md-4 col-lg-3">
                 <div class="card shadow-lg p-4">
 
-                    <form method="post">
+                    <form method="post" action="{% url 'cadastrarPage' %}">
                         {% csrf_token %}
 
                         <!-- Inserção do email para cadastro -->
                          <div class="mb-3">
                             <label for="emailUsuario" class="form-label">Primeiro, insira seu e-mail:</label>
                             <input type="email" name="emailUsuario" class="form-control" id="emailUsuario" placeholder="seunome0000@gmail.com" required>
+                         </div>
+
+                         <!-- Nome de usuário para cadastro -->
+                         <div class="mb-3">
+                            <label for="nomeUsuario" class="form-label">Insira o seu nome de usuário:</label>
+                            <input type="username" name="nomeUsuario" class="form-control" id="nomeUsuario" placeholder="Cara Legal dos Santos" required>
                          </div>
 
                          <!-- Inserção de senha para cadastro -->
