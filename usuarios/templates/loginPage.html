@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Site de Receitas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/loginPage.css' %}">
+</head>
+<body>
+
+    <header class="d-flex flex-column align-items-center justify-content-center mt-5">
+        <h3 class="text-center mb-4">Login</h3>
+    </header>
+
+    <main>
+        <div class="d-flex flex-column align-items-center justify-content-center mt-5" style="height: 50vh;">
+            <div class="col-md-4 col-lg-3">
+                <div class="card shadow-lg p-4"> <!-- Card é um container flexível que se pode aplicar estilos facilmente; shadow-lg adiciona uma grande sombra ao redor do card -->
+
+                    <form method="POST"> <!-- Configurada para incluir a configuração padrão de login do django, usando um protocolo de POST -->
+                        {% csrf_token %} <!-- Proteção contra ataques CSFR -->
+
+                        <!-- Caso eu queira, esse comando gera um formulário automático de login: {{ form.as_p }}-->
+
+                        <!-- Autentificação de usuário (usado email)-->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">E-mail:</label> <!-- label pode ser usado como a descrição de um item; form-label estiliza o label -->
+                            <input type="email" class="form-control" id="emailUsuario" placeholder="seunome0000@gmail.com" required> <!-- form-control estiliza os espaços para a inserção de informações -->
+                        </div>
+
+                        <!-- Autentificação de senha -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha:</label>
+                            <input type="password" class="form-control" id="senhaUsuario" placeholder="Insira sua senha" required>
+                        </div>
+
+                        <!-- Checkbox e esqueceu a senha -->
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="form-check"> <!-- form-check estiliza o botão de checkbox -->
+                                <input type="checkbox" class="form-check-input" id="lembrarMe" name="remember_me"> <!-- form-check-input outro comando para estilizar o botão de checkbox -->
+                                <label class="form-check-label" for="lembrarMe">Lembrar-me</label> <!-- form-check-label estiliza o botão ao lado do checkbox -->
+                            </div>
+                            <a href=" " class="linkEsquecer">Esqueceu sua senha?</a>
+                        </div>
+
+                        <!-- Botão de Enviar -->
+                        <button type="submit" class="btn w-100 mt-4" id="botaoEnviar">Login</button>
+                        <hr class="mt-4">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <p>Primeira vez aqui no site?</p>
+                            <button type="submit" class="btn" id="botaoCadastrar">
+                                <a href="" class="text-decoration-none" style="color: #212529;">Cadastrar-se</a>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static 'js/loginPage.js' %}"></script>
+</body>
+</html>

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'estruturaSite'
+    'estruturaSite', #APP DA ESTRUTURA DO SITE
+    'usuarios' #APP DOS USUÁRIOS 
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Modelo de autenficação com email
+AUTHENTICATION_BACKENDS = (
+    'usuarios.authentication.EmailBackend', #Meu modelo de autenficação customizado
+    'django.contrib.auth.backends.ModelBackend' #Backend default
+)
+
+LOGIN_URL = 'loginPage/' #Minha login page definida como a página de login padrão
+LOGIN_REDIRECTED_URL = '' #Página que será transferido após o login
