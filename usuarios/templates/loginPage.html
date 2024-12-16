@@ -11,7 +11,7 @@
 <body>
 
     <header class="d-flex flex-column align-items-center justify-content-center mt-5">
-        <h3 class="text-center mb-4">Login</h3>
+        <h3 class="mb-4">Login</h3>
     </header>
 
     <main>
@@ -47,13 +47,16 @@
 
                         <!-- Botão de Enviar -->
                         <button type="submit" class="btn w-100 mt-4" id="botaoEnviar">Login</button>
+
                         <hr class="mt-4">
+
                         <div class="d-flex flex-column align-items-center justify-content-center">
                             <p>Primeira vez aqui no site?</p>
                             <button type="submit" class="btn" id="botaoCadastrar">
-                                <a href="" class="text-decoration-none" style="color: #212529;">Cadastrar-se</a>
+                                <a href="{% url 'cadastrarPage' %}" class="text-decoration-none" style="color: #212529;">Cadastrar-se</a>
                             </button>
                         </div>
+
                     </form>
                 </div>
             </div>

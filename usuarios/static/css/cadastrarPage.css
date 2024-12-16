@@ -7,24 +7,11 @@ body {
     color: #212529;
 }
 
-#botaoEnviar, #botaoCadastrar {
+#botaoCadastrar {
     --bs-btn-border-color: #DDC6BA;
     --bs-btn-hover-bg: #D6C6B9;
     --bs-btn-hover-border-color: #D6C6B9;
     --bs-btn-active-bg: #C3AA9A;
     --bs-btn-active-border-color: #C3AA9A;
     --bs-btn-color: #212529;
-}
-
-#lembrarMe {
-    cursor: pointer;
-}
-
-.linkEsquecer {
-    color: #212529;
-    text-decoration: none;
-}
-
-.linkEsquecer:hover {
-    color: #D6C6B9;
 }
