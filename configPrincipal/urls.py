@@ -20,10 +20,16 @@ from django.urls import path
 from estruturaSite.views import homePageView
 from usuarios.views import loginPage, editarPerfilView, register
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homePageView.as_view(template_name='homePage.html'), name='homePage'),
     path('loginPage/', loginPage, name='loginPage'),
     path('cadastrarPage/', register, name='cadastrarPage'),
     path('editarPerfil/', editarPerfilView.as_view(template_name='editarPerfil.html'), name='editarPerfil')
-]
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

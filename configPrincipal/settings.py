@@ -128,3 +128,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'loginPage/' #Minha login page definida como a página de login padrão
 LOGIN_REDIRECTED_URL = 'editarPerfil' #Página que será transferido após o login
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
