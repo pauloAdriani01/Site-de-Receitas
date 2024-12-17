@@ -121,13 +121,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = '/media/' #Diz ao python que toda a media (fotos, vídeos...) serão acessadas nessa pasta
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Cria a pasta media no diretório base do projeto
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#Sistema de Login
+
 LOGIN_URL = 'loginPage/' #Minha login page definida como a página de login padrão
 LOGIN_REDIRECTED_URL = 'editarPerfil' #Página que será transferido após o login
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
