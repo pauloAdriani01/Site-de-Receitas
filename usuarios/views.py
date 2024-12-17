@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 
+
 class loginPageView(TemplateView):
     template_name = 'loginPage.html'
 
@@ -9,9 +10,10 @@ class cadastrarPageView(TemplateView):
 class editarPerfilView(TemplateView):
     template_name = 'editarPerfil.html'
 
+
 #Configuração da página de cadastro para o redirecionamento até a página de edição de perfil
 
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate ###ESSES CÓDIGOS DAS BIBLIOTECAS SERVEM TANTO PARA O LOGIN QUANTO PARA O CADASTRO
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -62,3 +64,25 @@ def register(request):
 
     #Redireciona até a página de login
     return redirect ('editarPerfil')
+
+###
+
+#Configuração para redirecionamento de volta para a homepage após o login
+
+def loginPage(request):
+
+    #Caso o método for o POST, ele irá pegar as informações desses campos e, então, usa-lás para autentificação 
+    if request.method == 'POST':
+        username = request.POST.get('nomeUsuario')
+        password = request.POST.get('senhaUsuario')
+
+        #Autentificação
+        usuario = authenticate(request, username=username, password=password)
+        if User is not None:
+            login(request, usuario) #Loga o usuário
+            messages.success(request, f'Bem-vindo(a) de volta, {usuario.username}!')
+            return redirect('homePage') #Redireciona a homepage
+        else:
+            messages.error(request, 'Nome de usuário ou senha incorretos')
+
+    return render(request, 'loginPage.html') #Redireciona de volta a homepage caso tenha um GET ou algum erro

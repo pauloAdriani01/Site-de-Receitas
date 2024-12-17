@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 from estruturaSite.views import homePageView
-from usuarios.views import loginPageView, editarPerfilView, register
+from usuarios.views import loginPage, editarPerfilView, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homePageView.as_view(template_name='homePage.html'), name='homePage'),
-    path('loginPage/', loginPageView.as_view(template_name='loginPage.html'), name='loginPage'),
+    path('loginPage/', loginPage, name='loginPage'),
     path('cadastrarPage/', register, name='cadastrarPage'),
     path('editarPerfil/', editarPerfilView.as_view(template_name='editarPerfil.html'), name='editarPerfil')
 ]
