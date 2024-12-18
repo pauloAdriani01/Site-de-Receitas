@@ -9,11 +9,12 @@ from django.dispatch import receiver
 class perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='padrao.png', upload_to='fotoPerfil')
+    aniversario = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
     
-#Sinal para criar criar um perfil ao criar um usuário
+#Sinal para criar um perfil ao criar um usuário
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:

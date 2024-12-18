@@ -38,8 +38,43 @@
 
                 <div class="col-md-4"> <!-- Essa div estará usando 4 colunas do row (existem 12 colunas) na esquerda -->
 
-                    <div class="d-flex flex-column align-items-center mt-4"> 
+                    <div class="d-flex flex-column align-items-center mt-5"> 
 
+                        <h2>Edição de Perfil</h2>
+
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-group mb-3">
+
+                                <label>Nome de Usuário:</label>
+                                {{ form.username }}
+
+
+                            </div>
+
+                            <div class="form-group mb-3">
+
+                                <label>Data de Nascimento</label>
+                                {{ form.aniversario }}
+
+                            </div>
+
+                            <div class="form-group mb-3">
+                                {{ form.image }}
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+
+                        </form>
+
+                        <h4 class="mt-5">Imagem atual:</h4>
+                        {% if profile.image %}
+                        
+                            <img src="{{ profile.image.url }}" alt="fotoUsuarioPerfil">
+
+                        <!-- 
                         <img src="https://placehold.co/300x250" alt="fotoUsuarioPerfil">
 
                         <h5 class="mt-3">NOME DO USUÁRIO AQUI</h5>
@@ -52,9 +87,8 @@
 
                                 <p>Data de aniversário:</p>
 
-                                <p>E-mail:</p>
-
                             </div>
+                        -->
 
                     </div>
 

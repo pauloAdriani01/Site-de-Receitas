@@ -2,8 +2,10 @@
 
 from django.views.generic import TemplateView
 
+"""
 class editarPerfilView(TemplateView):
     template_name = 'editarPerfil.html'
+"""
 
 ###
 
@@ -87,3 +89,31 @@ def loginPage(request):
     return render(request, 'loginPage.html') #Redireciona de volta a homepage caso tenha algum erro
 
 ###
+
+#View para a permissão da visualização da página e do formulário
+
+from django import forms
+#Biblioteca de User já importada anteriormente
+from .forms import editarPerfilForm
+from .models import perfil
+
+def editarPerfilView(request):
+    user_profile, created = perfil.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        formulario = editarPerfilForm(request.POST, request.FILES, instance=user_profile, user=request.user)
+
+        if formulario.is_valid():
+            formulario.save(user=request.user)
+            return redirect('editarPerfil') #Redireciona ao perfil
+        
+    else:
+        formulario = editarPerfilForm(instance=user_profile, user=request.user)
+
+    context = {
+        'form': formulario,
+        'profile': user_profile
+    }
+    return render(request, 'editarPerfil.html', context)
+        
+    
