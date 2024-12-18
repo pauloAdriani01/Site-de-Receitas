@@ -2,11 +2,6 @@
 
 from django.views.generic import TemplateView
 
-"""
-class editarPerfilView(TemplateView):
-    template_name = 'editarPerfil.html'
-"""
-
 ###
 
 #Configuração da página de cadastro para o redirecionamento até a página de edição de perfil
@@ -116,4 +111,7 @@ def editarPerfilView(request):
     }
     return render(request, 'editarPerfil.html', context)
         
-    
+###
+
+class logoutPageView(TemplateView):
+    template_name = 'logoutPage.html'

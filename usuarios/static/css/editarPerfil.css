@@ -11,7 +11,7 @@ a {
     text-decoration: none;
 }
 
-#botaoInicio, #botaoPesquisar, #botaoLogin {
+#botaoInicio, #botaoPesquisar, #botaoLogin, #botaoLogout {
     --bs-btn-border-color: #DDC6BA;
     --bs-btn-hover-bg: #D6C6B9;
     --bs-btn-hover-border-color: #D6C6B9;

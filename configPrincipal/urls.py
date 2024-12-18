@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from estruturaSite.views import homePageView
-from usuarios.views import loginPage, editarPerfilView, register
+from usuarios.views import loginPage, editarPerfilView, register, logoutPageView
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,7 +28,8 @@ urlpatterns = [
     path('', homePageView.as_view(template_name='homePage.html'), name='homePage'),
     path('loginPage/', loginPage, name='loginPage'),
     path('cadastrarPage/', register, name='cadastrarPage'),
-    path('editarPerfil/', editarPerfilView.as_view(template_name='editarPerfil.html'), name='editarPerfil')
+    path('editarPerfil/', editarPerfilView, name='editarPerfil'),
+    path('logoutPage/', logoutPageView.as_view(template_name='logoutPage.html'), name='logoutPage')
 ] 
 
 if settings.DEBUG:
