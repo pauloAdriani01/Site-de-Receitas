@@ -29,7 +29,7 @@ urlpatterns = [
     path('loginPage/', loginPage, name='loginPage'),
     path('cadastrarPage/', register, name='cadastrarPage'),
     path('editarPerfil/', editarPerfilView, name='editarPerfil'),
-    path('logoutPage/', logoutPageView.as_view(template_name='logoutPage.html'), name='logoutPage')
+    path('logoutPage/', logoutPageView, name='logoutPage')
 ] 
 
 if settings.DEBUG:

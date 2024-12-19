@@ -77,7 +77,7 @@ def loginPage(request):
         #Autentificação, usada a embutida no django
         usuario = authenticate(request, username=username, password=password)
         if User is not None:
-            login(request, usuario) #Loga o usuário caso a estja tudo correto
+            login(request, usuario) #Loga o usuário caso esteja tudo correto
             return redirect('homePage') #Redireciona a homepage
         else:
             messages.error(request, 'Nome de usuário ou senha incorretos')
@@ -113,5 +113,11 @@ def editarPerfilView(request):
         
 ###
 
-class logoutPageView(TemplateView):
-    template_name = 'logoutPage.html'
+#Página de logout
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logoutPageView(request):
+    logout(request)
+    return redirect('homePage')
